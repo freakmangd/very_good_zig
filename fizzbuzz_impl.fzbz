@@ -1,0 +1,7 @@
+div 3 print "fizz" ; if its divisible by 3, append "fizz"
+div 5 print "buzz" ; if its divisible by 5, append "buzz"
+div 6 print "bar" ; if its divisible by 6, append "bar"
+otherwise jump 6 ; we jump to line 6 past adding a "!" if we havent hit any other cases
+div 1 print "!" 
+otherwise print input ; otherwise just print the number
+otherwise print "?"

@@ -33,4 +33,19 @@ pub fn build(b: *std.Build) void {
 
     const left_pad_test_step = b.step("left_pad", "Run tests for the left-pad module");
     left_pad_test_step.dependOn(&run_left_pad_tests_step.step);
+
+    _ = b.addModule("fizzbuzz", .{
+        .source_file = .{ .path = "fizzbuzz.zig" },
+    });
+
+    const fizzbuzz_tests = b.addTest(.{
+        .name = "fizzbuzz_tests",
+        .target = target,
+        .optimize = optimize,
+        .root_source_file = .{ .path = "fizzbuzz.zig" },
+    });
+    const run_fizzbuzz_tests_step = b.addRunArtifact(fizzbuzz_tests);
+
+    const fizzbuzz_test_step = b.step("fizzbuzz", "Run tests for the left-pad module");
+    fizzbuzz_test_step.dependOn(&run_fizzbuzz_tests_step.step);
 }
